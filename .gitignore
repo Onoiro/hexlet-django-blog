@@ -1,6 +1,7 @@
-**/__pycache__
-**/.venv
-**/dist
-**/.coverage
-**/coverage.xml
+.venv/
+*.sqlite3
+__pycache__/
 .env
+.coverage
+htmlcov/
+
