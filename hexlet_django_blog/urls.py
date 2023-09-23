@@ -23,6 +23,6 @@ from .views import IndexPageView
 urlpatterns = [
     path('', IndexPageView.as_view()),
     path('about/', views.about),
-    path('articles/',include('hexlet_django_blog.articles.urls')),
+    path('articles/', include('hexlet_django_blog.articles.urls')),
     path('admin/', admin.site.urls),
 ]
