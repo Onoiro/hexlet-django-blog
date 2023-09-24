@@ -1,14 +1,11 @@
 from django.shortcuts import redirect
 from django.views import View
 from django.http import HttpResponse
+from django.urls import reverse
 
-
-# Create your views here.
 class IndexView(View):
-
     def get(self, request, *args, **kwargs):
-        return redirect('article')
+        return redirect(reverse('article', args=['python', 42]))
 
-
-    def get(self, request, article_id=42, tags='python'):
+    def article(self, request, tags, article_id):
         return HttpResponse(f"Статья номер {article_id}. Тег {tags}")
