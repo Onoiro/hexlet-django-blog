@@ -5,6 +5,7 @@ from .models import Article
 
 
 class IndexView(View):
+
     def get(self, request, *args, **kwargs):
         articles = Article.objects.all()[:15]
         return render(request, 'articles/index.html',
@@ -15,6 +16,8 @@ class ArticleView(View):
 
     def get(self, request, *args, **kwargs):
         article = get_object_or_404(Article, id=kwargs['id'])
+        return render(request, 'articles/show.html',
+                      context={'article': article})
 
 
 class ArticleForm(ModelForm):
@@ -24,6 +27,7 @@ class ArticleForm(ModelForm):
 
 
 class ArticleFormCreateView(View):
+
     def get(self, request, *args, **kwargs):
         form = ArticleForm()
         return render(request, 'articles/create.html', {'form': form})
@@ -32,5 +36,5 @@ class ArticleFormCreateView(View):
         form = ArticleForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('articles')
+            return redirect('index')
         return render(request, 'articles/create.html', {'form': form})
