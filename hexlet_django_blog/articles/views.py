@@ -78,7 +78,8 @@ class ArticleFormEditView(View):
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Article was updated successfully')
             return redirect('index')
-
+        messages.error(request, 'Error when update an article')
         return render(request, 'articles/update.html',
                       {'form': form, 'article_id': article_id})
