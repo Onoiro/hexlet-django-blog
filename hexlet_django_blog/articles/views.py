@@ -91,4 +91,5 @@ class ArticleFormDeleteView(View):
         article = Article.objects.get(id=article_id)
         if article:
             article.delete()
+            messages.success(request, f'Article <<{article.name}>> was deleted successfully')
         return redirect('index')
